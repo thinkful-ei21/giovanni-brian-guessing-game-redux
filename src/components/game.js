@@ -5,26 +5,29 @@ import GuessSection from './guess-section';
 import StatusSection from './status-section';
 import InfoSection from './info-section';
 import { connect } from 'react-redux';
-
+import {resetGame } from '../actions/actions';
 export class Game extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      guesses: [],
-      feedback: 'Make your guess!',
-      auralStatus: '',
-      correctAnswer: Math.round(Math.random() * 100) + 1
-    };
+    // this.state = {
+    //   guesses: [],
+    //   feedback: 'Make your guess!',
+    //   auralStatus: '',
+    //   correctAnswer: Math.round(Math.random() * 100) + 1
+    // };
   }
 
-  restartGame() {
-    this.setState({
-      guesses: [],
-      feedback: 'Make your guess!',
-      auralStatus: '',
-      correctAnswer: Math.floor(Math.random() * 100) + 1
-    });
+   restartGame(){
+    props.dispatch(resetGame());
   }
+  // restartGame() {
+  //   this.setState({
+  //     guesses: [],
+  //     feedback: 'Make your guess!',
+  //     auralStatus: '',
+  //     correctAnswer: Math.floor(Math.random() * 100) + 1
+  //   });
+  // }
 
   makeGuess(guess) {
     guess = parseInt(guess, 10);
