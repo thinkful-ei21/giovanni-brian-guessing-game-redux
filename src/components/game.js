@@ -5,7 +5,7 @@ import GuessSection from './guess-section';
 import StatusSection from './status-section';
 import InfoSection from './info-section';
 import { connect } from 'react-redux';
-import {resetGame, setFeedback, addGuess } from '../actions/actions';
+import {resetGame, setFeedback, addGuess, setAural } from '../actions/actions';
 export class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -67,7 +67,7 @@ export class Game extends React.Component {
   }
 
   generateAuralUpdate() {
-    const { guesses, feedback } = this.state;
+    const { guesses, feedback } = this.props;
 
     // If there's not exactly 1 guess, we want to
     // pluralize the nouns in this aural update.
@@ -80,11 +80,12 @@ export class Game extends React.Component {
     }
 
 
-    this.setState({ auralStatus });
+    //this.setState({ auralStatus });
+    this.props.dispatch(this.props.setAural(auralStatus));
   }
 
   render() {
-    const { feedback, guesses, auralStatus } = this.state;
+    const { feedback, guesses, auralStatus } = this.props;
     const guessCount = guesses.length;
 
     return (
