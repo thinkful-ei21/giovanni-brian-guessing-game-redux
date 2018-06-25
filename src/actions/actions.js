@@ -14,12 +14,12 @@ export const clearGuesses = ()=>{
     }
 }
 
-export const TOGGLE_OVERLAY = 'TOGGLE_OVERLAY';
-export const toggleOverlay =() =>{
-    return {
-        type: TOGGLE_OVERLAY
-    }
-}
+// export const TOGGLE_OVERLAY = 'TOGGLE_OVERLAY';
+// export const toggleOverlay =() =>{
+//     return {
+//         type: TOGGLE_OVERLAY
+//     }
+// }
 
 export const RESET_GAME = 'RESET_GAME';
 export const resetGame = () =>{

@@ -18,9 +18,9 @@ export const gameReducer = (state=initialState, action) =>{
         case actions.CLEAR_GUESS : {
             return {...state, guesses:[]};
         }
-        case actions.TOGGLE_OVERLAY : {
-            return state;
-        }
+        // case actions.TOGGLE_OVERLAY : {
+        //     return state;
+        // }
         case actions.SET_FEEDBACK :{
             return {...state, feedback:action.feedback};
         }
