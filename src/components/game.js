@@ -5,7 +5,7 @@ import GuessSection from './guess-section';
 import StatusSection from './status-section';
 import InfoSection from './info-section';
 import { connect } from 'react-redux';
-import {resetGame } from '../actions/actions';
+import {resetGame, setFeedback, addGuess } from '../actions/actions';
 export class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ export class Game extends React.Component {
   }
 
    restartGame(){
-    props.dispatch(resetGame());
+    this.props.dispatch(resetGame());
   }
   // restartGame() {
   //   this.setState({
@@ -32,11 +32,12 @@ export class Game extends React.Component {
   makeGuess(guess) {
     guess = parseInt(guess, 10);
     if (isNaN(guess)) {
-      this.setState({ feedback: 'Please enter a valid number' });
+      this.props.dispatch(setFeedback('Please enter a valid number'))
+      // this.setState({ feedback: 'Please enter a valid number' });
       return;
     }
 
-    const difference = Math.abs(guess - this.state.correctAnswer);
+    const difference = Math.abs(guess - this.props.correctAnswer);
 
     let feedback;
     if (difference >= 50) {
@@ -51,10 +52,12 @@ export class Game extends React.Component {
       feedback = 'You got it!';
     }
 
-    this.setState({
-      feedback,
-      guesses: [...this.state.guesses, guess]
-    });
+    this.props.dispatch(setFeedback(feedback));
+    this.props.dispatch(addGuess(guess));
+    // this.setState({
+    //   feedback,
+    //   guesses: [...this.state.guesses, guess]
+    // });
 
     // We typically wouldn't touch the DOM directly like this in React
     // but this is the best way to update the title of the page,
